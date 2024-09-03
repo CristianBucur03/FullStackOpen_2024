@@ -6,6 +6,7 @@ function App() {
   const [neutral, setNEutral] = useState(0);
   const totalVotes = good + bad + neutral;
   const average = totalVotes !== 0 ? (good - bad) / totalVotes : 0;
+  const posVotesPercentage = totalVotes !== 0 ? (good / totalVotes) * 100 : 0;
   return (
     <>
       <p>Give feedback</p>
@@ -21,6 +22,7 @@ function App() {
       <p>Neutral: {neutral}</p>
       <p>Total votes: {totalVotes}</p>
       <p>Average: {average}</p>
+      <p>Positive:{posVotesPercentage}</p>
     </>
   );
 }
