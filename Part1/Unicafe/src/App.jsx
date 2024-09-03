@@ -10,7 +10,7 @@ function App() {
     const totalVotes = good + bad + neutral;
     const average = totalVotes !== 0 ? (good - bad) / totalVotes : 0;
     const posVotesPercentage = totalVotes !== 0 ? (good / totalVotes) * 100 : 0;
-    return (
+    return totalVotes !== 0 ? (
       <div>
         <h1>Statistics</h1>
         <p>Good: {good}</p>
@@ -20,6 +20,8 @@ function App() {
         <p>Average: {average}</p>
         <p>Positive:{posVotesPercentage}</p>
       </div>
+    ) : (
+      <p>No feedback given</p>
     );
   };
 
