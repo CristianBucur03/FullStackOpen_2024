@@ -2,9 +2,21 @@
 import { useState } from "react";
 
 function App() {
-  const [good, setCount] = useState(0);
+  const [good, setGood] = useState(0);
   const [bad, setBad] = useState(0);
-  const [neutral, setNEutral] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+
+  const MyButton = ({ myText, myEvent, count }) => {
+    return <button onClick={() => myEvent(count + 1)}>{myText}</button>;
+  };
+
+  const StatisticLine = ({ text, myValue }) => {
+    return (
+      <p>
+        {text}: {myValue}{" "}
+      </p>
+    );
+  };
 
   const Statistics = ({ good, bad, neutral }) => {
     const totalVotes = good + bad + neutral;
@@ -13,12 +25,18 @@ function App() {
     return totalVotes !== 0 ? (
       <div>
         <h1>Statistics</h1>
-        <p>Good: {good}</p>
+        <StatisticLine text="Good" myValue={good} />
+        <StatisticLine text="Bad" myValue={bad} />
+        <StatisticLine text="Neutral" myValue={neutral} />
+        <StatisticLine text="Total votes" myValue={totalVotes} />
+        <StatisticLine text="Average" myValue={average} />
+        <StatisticLine text="Positive" myValue={posVotesPercentage} />
+        {/* <p>Good: {good}</p>
         <p>Bad: {bad}</p>
         <p>Neutral: {neutral}</p>
         <p>Total votes: {totalVotes}</p>
         <p>Average: {average}</p>
-        <p>Positive:{posVotesPercentage}</p>
+        <p>Positive:{posVotesPercentage}</p> */}
       </div>
     ) : (
       <p>No feedback given</p>
@@ -29,10 +47,9 @@ function App() {
     <>
       <h1>Give feedback</h1>
       <div>
-        <button onClick={() => setCount(good + 1)}>Good</button>
-        <button onClick={() => setBad(bad + 1)}>Bad</button>
-        <button onClick={() => setNEutral(neutral + 1)}>Neutral</button>
-
+        <MyButton myText={"Good"} myEvent={setGood} count={good} />
+        <MyButton myText={"Bad"} myEvent={setBad} count={bad} />
+        <MyButton myText={"Neutral"} myEvent={setNeutral} count={neutral} />
         <Statistics good={good} bad={bad} neutral={neutral} />
       </div>
     </>
