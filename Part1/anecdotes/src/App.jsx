@@ -26,14 +26,23 @@ function App() {
     setPoints(changePoints);
     console.log(points);
   };
-
+  const largestVote = Math.max(...points);
+  const indexOfLargestVote = points.indexOf(largestVote);
   return (
     <div>
+      <h1>Anecdotes of the day</h1>
       <div>
         {anecdotes[selected]} has {points[selected]}points
       </div>
-      <button onClick={() => selectAnecdote()}>Next anecdote</button>
-      <button onClick={() => vote(selected)}>Vote</button>
+
+      <div>
+        <button onClick={() => selectAnecdote()}>Next anecdote</button>
+        <button onClick={() => vote(selected)}>Vote</button>
+      </div>
+      <h1>Anecdote with most votes</h1>
+      <div>
+        {anecdotes[indexOfLargestVote]} has {points[indexOfLargestVote]}points
+      </div>
     </div>
   );
 }
