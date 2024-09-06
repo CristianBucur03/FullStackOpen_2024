@@ -12,9 +12,10 @@ function App() {
 
   const StatisticLine = ({ text, myValue }) => {
     return (
-      <p>
-        {text}: {myValue}{" "}
-      </p>
+      <tr>
+        <td> {text}:</td>
+        <td> {myValue} </td>
+      </tr>
     );
   };
 
@@ -23,21 +24,19 @@ function App() {
     const average = totalVotes !== 0 ? (good - bad) / totalVotes : 0;
     const posVotesPercentage = totalVotes !== 0 ? (good / totalVotes) * 100 : 0;
     return totalVotes !== 0 ? (
-      <div>
-        <h1>Statistics</h1>
-        <StatisticLine text="Good" myValue={good} />
-        <StatisticLine text="Bad" myValue={bad} />
-        <StatisticLine text="Neutral" myValue={neutral} />
-        <StatisticLine text="Total votes" myValue={totalVotes} />
-        <StatisticLine text="Average" myValue={average} />
-        <StatisticLine text="Positive" myValue={posVotesPercentage} />
-        {/* <p>Good: {good}</p>
-        <p>Bad: {bad}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Total votes: {totalVotes}</p>
-        <p>Average: {average}</p>
-        <p>Positive:{posVotesPercentage}</p> */}
-      </div>
+      <>
+        <p>Statistics</p>
+        <table>
+          <thead>
+            <StatisticLine text="Good" myValue={good} />
+            <StatisticLine text="Bad" myValue={bad} />
+            <StatisticLine text="Neutral" myValue={neutral} />
+            <StatisticLine text="Total votes" myValue={totalVotes} />
+            <StatisticLine text="Average" myValue={average} />
+            <StatisticLine text="Positive" myValue={posVotesPercentage} />
+          </thead>
+        </table>
+      </>
     ) : (
       <p>No feedback given</p>
     );
