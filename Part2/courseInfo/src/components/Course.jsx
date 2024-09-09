@@ -5,6 +5,7 @@ import Total from "./Total";
 
 /* eslint-disable react/prop-types */
 export const Course = ({ course }) => {
+  console.log(course);
   const Header = ({ props }) => {
     return (
       <>
