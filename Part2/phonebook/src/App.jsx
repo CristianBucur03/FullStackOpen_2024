@@ -28,12 +28,16 @@ function App() {
   const newName = {
     name: newPerson,
   };
+  const existingName = persons.filter((each) => each.name === newPerson);
 
   const addNewPerson = (event) => {
     event.preventDefault();
-    setNewPerson("");
+
     const newList = persons.concat(newName);
-    setPersons(newList);
+    existingName.length > 0
+      ? alert(`${newPerson} is already in the list`)
+      : setPersons(newList);
+    setNewPerson("");
   };
   return (
     <>
