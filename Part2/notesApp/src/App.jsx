@@ -9,9 +9,9 @@ const App = ({ notes }) => {
     event.preventDefault();
 
     const noteObject = {
+      id: String(notes.length + 1),
       content: newNote,
       important: Math.random() < 0.5,
-      id: String(notes.length + 1),
     };
     setNotes(note.concat(noteObject));
     console.log(note);
