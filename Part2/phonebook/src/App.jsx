@@ -1,32 +1,22 @@
 import { useState } from "react";
 
 function App() {
-  const [persons, setPersons] = useState([{ name: "Mikey Mike" }]);
+  const [persons, setPersons] = useState([
+    { name: "Mikey Mike", number: "09090909" },
+  ]);
   const [newPerson, setNewPerson] = useState("");
-
-  // const handleNameInputChange = (event) => {
-  //   setNewPerson(event.target.value);
-  // };
-
-  // const addNewPerson = (event) => {
-  //   event.preventDefault();
-  //   const newName = {
-  //     name: newPerson,
-  //   };
-  //   const NewPersonList = persons.concat(newName);
-  //   newPerson == ""
-  //     ? alert("Please enter a name In the text box")
-  //     : setPersons(NewPersonList);
-  //   setNewPerson("");
-  //   console.log(persons);
-  // };
+  const [newNumber, setNewNumber] = useState("");
 
   const handleNameInputChange = (event) => {
     setNewPerson(event.target.value);
   };
+  const handleNumberInputChange = (event) => {
+    setNewNumber(event.target.value);
+  };
 
   const newName = {
     name: newPerson,
+    number: newNumber,
   };
   const existingName = persons.filter((each) => each.name === newPerson);
 
@@ -36,8 +26,11 @@ function App() {
     const newList = persons.concat(newName);
     existingName.length > 0
       ? alert(`${newPerson} is already in the list`)
-      : setPersons(newList);
+      : newNumber !== ""
+      ? setPersons(newList)
+      : alert(`Phone  number is missing`);
     setNewPerson("");
+    setNewNumber("");
   };
   return (
     <>
@@ -46,6 +39,8 @@ function App() {
         <div>
           <h3>Person name:</h3>
           <input value={newPerson} onChange={handleNameInputChange} />
+          <h3>Person number:</h3>
+          <input value={newNumber} onChange={handleNumberInputChange} />
         </div>
         <div>
           <button type="submit">Add person</button>
@@ -55,7 +50,9 @@ function App() {
         <h3>Numbers:</h3>
       </div>
       {persons.map((each, i) => (
-        <p key={i}>{each.name}</p>
+        <p key={i}>
+          {each.name} {each.number}
+        </p>
       ))}
     </>
   );
