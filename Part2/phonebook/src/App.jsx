@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Numbers } from "./components/Numbers";
+import { AddPerson } from "./components/AddPerson";
+import { SearchField } from "./components/SearchField";
 
 function App() {
   const [persons, setPersons] = useState([
@@ -55,36 +58,19 @@ function App() {
   return (
     <>
       <h2>Phone Book</h2>
-      <form onSubmit={addNewPerson}>
-        <div>
-          <h3>Person name:</h3>
-          <input value={newPerson} onChange={handleNameInputChange} />
-          <h3>Person number:</h3>
-          <input value={newNumber} onChange={handleNumberInputChange} />
-        </div>
-        <div>
-          <button type="submit">Add person</button>
-        </div>
-      </form>
-      <form>
-        <div>
-          Search person : <input onChange={handleSearchInputChange} />
-        </div>
-      </form>
-      <div>
-        <h3>Numbers:</h3>
-      </div>
-      {searchInput !== ""
-        ? filteredList.map((each, i) => (
-            <p key={i}>
-              {each.name} {each.number}
-            </p>
-          ))
-        : persons.map((each, i) => (
-            <p key={i}>
-              {each.name} {each.number}
-            </p>
-          ))}
+      <AddPerson
+        addNewPerson={addNewPerson}
+        newPerson={newPerson}
+        handleNameInputChange={handleNameInputChange}
+        newNumber={newNumber}
+        handleNumberInputChange={handleNumberInputChange}
+      />
+      <SearchField handleSearchInputChange={handleSearchInputChange} />
+      <Numbers
+        searchInput={searchInput}
+        persons={persons}
+        filteredList={filteredList}
+      />
     </>
   );
 }
